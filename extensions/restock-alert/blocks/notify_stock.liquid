@@ -1,0 +1,54 @@
+{% assign outOfStockVariants = product.variants | where: 'available', false %}
+{% if outOfStockVariants.size > 0 %}
+  <div id="notify-modal" class="modal" data-shopid="{{ shop.id }}">
+    <div class="modal-content">
+      <span class="close-aler-popup">&times;</span>
+      <h2>{{ product.title }}</h2>
+      <h3>NOTIFY ME WHEN AVAILABLE</h3>
+      <h4>We'll notify you when this product is back in stock.</h4>
+      <form id="notify-form">
+        <h4>Select Variant(s) to Notify:</h4>
+        {% if product.variants.size > 1 %}
+          <select id="variant-select">
+            <option value="">Any Variant</option>
+            {% for variant in product.variants %}
+              {% if variant.available == false %}
+                <option value="{{ variant.id }}">{{ variant.title }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        {% endif %}
+
+        <label>
+          <input type="checkbox" name="notify-any-variant" value="true">
+          Notify me for any variant restock
+        </label><br>
+        
+        <input type="email" id="email-input" placeholder="Enter your email" required>
+        <input type="hidden" id="product-id" value="{{ product.id }}">
+        <button type="submit" id="send-restock-alert">Notify Me</button>
+      </form>
+
+      <div id="notification-success" style="display: none;">
+        <p>Notification request sent successfully!</p>
+      </div>
+
+      <div id="notification-error" style="display: none;">
+        <p>Sorry, there was an error processing your request. Please try again later.</p>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Restock Alert Popup",
+  "target": "body",
+  "stylesheet": "restock-alert.css",
+  "javascript": "restock-alert.js",
+  "settings": [
+    
+  ]
+}
+{% endschema %}

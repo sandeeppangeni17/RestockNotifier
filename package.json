@@ -1,0 +1,32 @@
+{
+  "name": "restock-alert",
+  "version": "1.0.0",
+  "main": "web/index.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "shopify": "shopify",
+    "build": "shopify app build",
+    "dev": "shopify app dev",
+    "info": "shopify app info",
+    "generate": "shopify app generate",
+    "deploy": "shopify app deploy"
+  },
+  "dependencies": {
+    "@shopify/app": "3.47.3",
+    "@shopify/cli": "3.47.3",
+    "@shopify/shopify-app-session-storage-mongodb": "^1.0.11",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "mongodb": "^5.7.0",
+    "mongoose": "^7.3.3",
+    "nodemailer": "^6.9.4",
+    "validator": "^13.9.0"
+  },
+  "author": "acer",
+  "private": true,
+  "workspaces": [
+    "web",
+    "web/frontend",
+    "extensions/*"
+  ]
+}

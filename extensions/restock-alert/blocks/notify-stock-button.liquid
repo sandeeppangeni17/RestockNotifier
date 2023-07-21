@@ -1,0 +1,20 @@
+{% assign outOfStockVariants = product.variants | where: 'available', false %}
+{% if outOfStockVariants.size > 0 %}
+<div class="notification-button-wrapper">
+    <button id="send-notification-btn">{{ block.settings.alert_button_text }}</button>
+</div>
+{% endif %}
+{% schema %}
+{
+  "name": "Restock Alert button",
+  "target": "section",
+  "settings": [
+    {
+        "type": "text",
+        "id": "alert_button_text",
+        "label": "Button Text",
+        "default": "Notify me when available"
+    }
+  ]
+}
+{% endschema %}
