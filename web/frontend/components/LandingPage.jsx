@@ -40,7 +40,8 @@ export function LandingPage() {
       const restockAlertMetafield = metafieldsData.find(
         (metafield) => metafield.namespace === "restock_alert"
       );
-      var isStatus = restockAlertMetafield.value === "true";
+      console.log("restockAlertMetafield", restockAlertMetafield);
+      var isStatus = restockAlertMetafield ? restockAlertMetafield.value === "true" : false;
       setConnected(isStatus);
       setIsLoading(false);
     })
